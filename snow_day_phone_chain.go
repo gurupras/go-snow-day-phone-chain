@@ -43,6 +43,10 @@ func (p *person) tick(eventChan chan *tickAction) {
 // CalculateNumPhoneCalls calculates the number of phone calls made within
 // numMinutes time at callsPerPerson number of calls per person
 func CalculateNumPhoneCalls(numMinutes uint32, callsPerPerson uint32) uint64 {
+	// Short-circuit in case values are 0
+	if numMinutes == 0 || callsPerPerson == 0 {
+		return 0
+	}
 	// Because we're treating the number of minutes as a variable
 	// we're going to use an iterative solution rather than a recursive one to ensure
 	// that we're not blowing up the stack

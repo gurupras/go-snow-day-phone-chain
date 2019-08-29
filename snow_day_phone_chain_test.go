@@ -10,8 +10,13 @@ func TestZero(t *testing.T) {
 	require := require.New(t)
 
 	minutes := uint32(0)
-	callsPerPerson := uint32(2)
+	callsPerPerson := uint32(4294967295)
 	result := CalculateNumPhoneCalls(minutes, callsPerPerson)
+	require.Equal(uint64(0), result)
+
+	minutes = uint32(4294967295)
+	callsPerPerson = uint32(0)
+	result = CalculateNumPhoneCalls(minutes, callsPerPerson)
 	require.Equal(uint64(0), result)
 }
 func TestKnownValue2(t *testing.T) {
